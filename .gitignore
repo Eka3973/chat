@@ -1,0 +1,7 @@
+.idea
+.DS_Store
+
+# Project exclude paths
+/backend/node_modules/
+/frontend/android/
+/frontend/ios/
