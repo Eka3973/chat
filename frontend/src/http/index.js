@@ -1,17 +1,19 @@
 import axios from 'axios'
 import Keychain from "react-native-keychain"
-
-export const API_URL = `http://localhost:5000/`
+import {BASE_API_URL} from "../config";
 
 const $api = axios.create({
     withCredentials: true,
-    baseURL: API_URL
+    baseURL: BASE_API_URL,
+    // headers: {
+    //     'Content-Type': 'application/json',
+    // },
 })
 
 $api.interceptors.request.use(
     async (config) => {
         const {password: token} = await Keychain.getGenericPassword()
-        console.log('token', token)
+        // console.log('token', token)
         if (token) {
             config.headers.Authorization = `Bearer ${token}`
         }
@@ -21,7 +23,7 @@ $api.interceptors.request.use(
         return Promise.reject(error)
     })
 
-$api.interceptors.response.use((config)=>{
+$api.interceptors.response.use((config) => {
     return config
 }, async error => {
     const originalRequest = error.config
@@ -32,12 +34,12 @@ $api.interceptors.response.use((config)=>{
             const response = await axios.get(`${API_URL}/refresh`, {withCredentials: true})
             await Keychain.setGenericPassword(response.data.user.id, response.data.accessToken)
             return $api.request(originalRequest)
-        }catch (e){
+        } catch (e) {
             console.log('НЕ АВТОРИЗОВАН')
         }
 
     }
-    console.log('errorInt', error);
+    // console.log('errorInt', error.message);
     throw error.response?.data
 })
 export default $api

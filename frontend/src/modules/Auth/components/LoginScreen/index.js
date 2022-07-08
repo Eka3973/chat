@@ -1,6 +1,6 @@
 import React from 'react'
 import {ActivityIndicator, TouchableOpacity, View} from 'react-native'
-import Text from '../../../../common/CustomTextInput'
+import Text from '../../../../common/CustomText'
 import styles from './styles'
 import {colors} from "../../../../assets/styles/colors";
 import Button from "../../../../common/CustomButton";
@@ -14,7 +14,7 @@ import {useNavigation} from "@react-navigation/native";
 
 
 export const LoginScreen = () => {
-    const dispatch = useDispatch();
+    const dispatch = useDispatch()
     const error = useSelector(getLoginError)
     const fieldValue = useSelector(getLoginValue)
     const isLoading = useSelector(getLoginIsLoading)
@@ -34,7 +34,7 @@ export const LoginScreen = () => {
             <View style={styles.auth}>
                 {isLoading ?
                     <ActivityIndicator/> :
-                    <>
+                    <React.Fragment>
                         <TextInput
                             name="email"
                             styles={styles.input}
@@ -42,6 +42,7 @@ export const LoginScreen = () => {
                             placeholder="Enter your email"
                             placeholderTextColor={colors.darkBlue}
                             value={fieldValue.email}
+                            selectionColor={colors.darkBlue}
 
                         />
                         <TextInput
@@ -51,6 +52,7 @@ export const LoginScreen = () => {
                             placeholder="Enter password"
                             placeholderTextColor={colors.darkBlue}
                             value={fieldValue.password}
+                            selectionColor={colors.darkBlue}
 
                         />
                         {error ? <Text styles={styles.errorText}>{error}</Text> : null}
@@ -69,7 +71,7 @@ export const LoginScreen = () => {
                             </Text>
                             </TouchableOpacity>
                         </View>
-                    </>
+                    </React.Fragment>
                 }
             </View>
         </AuthContainer>

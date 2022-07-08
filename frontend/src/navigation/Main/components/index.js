@@ -2,14 +2,18 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack'
 import React from 'react'
 import {LoginScreen} from '../../../modules/Auth/components/LoginScreen'
 import {routs} from '../../routs'
-import {ChatsScreen} from '../../../modules/ChatsListScreen/components'
-import {ChatScreen} from '../../../modules/ChatScreen'
+import {MembersScreen} from '../../../modules/MembersScreen/components'
+import {MessagesScreen} from '../../../modules/MessagesScreen/components'
 import {ProfilePopUp} from '../../../modules/ProfilePopUp/components'
 import {SettingScreen} from '../../../modules/SettingScreen'
 import {useSelector} from "react-redux";
-import {getUser, getUserIsActivated} from "../selectors";
+import {getMember, getUser, getUserIsActivated} from "../selectors";
 import {ConfirmEmailScreen} from "../../../modules/Auth/components/ComfirmEmailScreen";
 import {RegistrationScreen} from "../../../modules/Auth/components/RegistrationScreen";
+import {colors} from "../../../assets/styles/colors"
+import styles from "../../../modules/MembersScreen/components/styles";
+import {Image} from "react-native";
+
 
 const MainStack = createNativeStackNavigator()
 
@@ -17,7 +21,7 @@ const MainStack = createNativeStackNavigator()
 export const MainComponent = () => {
     const userData = useSelector(getUser)
     const userIsActivated = useSelector(getUserIsActivated)
-
+    // const {userName} = useSelector(getMember)
 
     const renderScreens = () => {
         if(userData && !userIsActivated) {
@@ -33,13 +37,23 @@ export const MainComponent = () => {
             return (
                 <>
                     <MainStack.Screen
-                        name={routs.chatRoot}
-                        component={ChatsScreen}
+                        name={routs.members}
+                        component={MembersScreen}
                         options={{
+                            title: 'Amazing chat',
+                            headerTitleAlign: 'right',
+                            headerTitleStyle: {
+                                fontSize: 20,
+                                fontFamily: 'Pacifico-Regular',
+                            },
                             headerRight: () => <ProfilePopUp/>,
                         }}
                     />
-                    <MainStack.Screen name={routs.chat} component={ChatScreen}/>
+                    <MainStack.Screen
+                        name={routs.messages}
+                        component={MessagesScreen}
+                        options={({ route }) => ({ title: '', headerBackTitle: route.params.userName })}
+                    />
                     <MainStack.Screen
                         name={routs.setting}
                         component={SettingScreen}
@@ -71,7 +85,12 @@ export const MainComponent = () => {
     }
 
     return (
-        <MainStack.Navigator>
+        <MainStack.Navigator screenOptions={{
+            headerStyle: {
+                backgroundColor: colors.darkBlue,
+            },
+            headerTintColor: colors.white,
+        }}>
             {renderScreens()}
         </MainStack.Navigator>
     )

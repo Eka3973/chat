@@ -9,7 +9,8 @@ module.exports = async (req, res, next) => {
             return next(ApiError.BadRequest('Некорректный email или пароль', errors.array()))
         }
         const {userName, email, password} = req.body
-        const userData = await registration(userName, email, password)
+        const {host} = req.headers;
+        const userData = await registration(userName, email, password, host)
         res.cookie('refreshToken', userData.refreshToken, {maxAge: 30 * 20 * 60 * 60 * 1000, httpOnly: true})
         return res.json(userData)
     } catch (e) {

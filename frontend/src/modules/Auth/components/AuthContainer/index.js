@@ -1,6 +1,6 @@
 import styles from "./styles";
 import {View} from "react-native";
-import Text from "../../../../common/CustomTextInput";
+import Text from "../../../../common/CustomText";
 import React from "react";
 
 

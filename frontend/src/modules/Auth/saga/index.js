@@ -11,7 +11,6 @@ function* handleRegistration({payload}) {
         yield put(actions.registrationSuccess())
         yield put(setUser(response.data))
         yield Keychain.setGenericPassword(response.data.user.id, response.data.accessToken)
-
     } catch (error) {
         yield put(actions.registrationFailure(error?.message))
     }

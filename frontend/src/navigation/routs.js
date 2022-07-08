@@ -1,7 +1,7 @@
 export const routs = {
   register: 'Register',
   login: 'Login',
-  chatRoot: 'ChatRoot',
-  chat: 'Chat',
+  members: 'Members',
+  messages: 'Messages',
   setting: 'Setting',
 }

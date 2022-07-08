@@ -17,6 +17,9 @@ export const ConfirmEmailScreen = () => {
     const login = () => {
         dispatch(actions.login({...value}))
     }
+    const logout = () => {
+        dispatch(actions.logout())
+    }
 
     return (
         <AuthContainer>
@@ -32,6 +35,12 @@ export const ConfirmEmailScreen = () => {
                         <Button
                             label="I've done that!"
                             onPress={login}
+                            stylesButton={styles.button}
+                            stylesButtonText={styles.buttonText}
+                        />
+                        <Button
+                            label="Reset email!"
+                            onPress={logout}
                             stylesButton={styles.button}
                             stylesButtonText={styles.buttonText}
                         />

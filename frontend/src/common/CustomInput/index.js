@@ -1,7 +1,7 @@
 import {TextInput} from 'react-native'
 import React from 'react'
 
-const CustomTextInput = ({handleChange, name, placeholder, placeholderTextColor, styles, value}) => {
+const CustomTextInput = ({handleChange, name, placeholder, placeholderTextColor, styles, value, selectionColor}) => {
     return (
         <TextInput
             style={styles}
@@ -10,6 +10,7 @@ const CustomTextInput = ({handleChange, name, placeholder, placeholderTextColor,
             placeholderTextColor={placeholderTextColor}
             name={name}
             value={value}
+            selectionColor={selectionColor}
         />
     )
 }

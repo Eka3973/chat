@@ -1,4 +1,5 @@
-import { Text, TouchableOpacity } from 'react-native'
+import { TouchableOpacity } from 'react-native'
+import Text from '../CustomText'
 import React from 'react'
 
 const CustomButton = ({ onPress, label, stylesButton, stylesButtonText, disabled }) => {

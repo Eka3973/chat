@@ -1,6 +1,6 @@
 import React from 'react'
 import {ActivityIndicator, TouchableOpacity, View} from 'react-native'
-import Text from '../../../../common/CustomTextInput'
+import Text from '../../../../common/CustomText'
 import styles from './styles'
 import {colors} from "../../../../assets/styles/colors";
 import Button from "../../../../common/CustomButton";
@@ -34,7 +34,7 @@ export const RegistrationScreen = () => {
             <View style={styles.auth}>
                 {isLoading ?
                     <ActivityIndicator/> :
-                    <>
+                    <React.Fragment>
                         <TextInput
                             name="userName"
                             styles={styles.input}
@@ -42,6 +42,7 @@ export const RegistrationScreen = () => {
                             placeholder="Enter your name"
                             placeholderTextColor={colors.darkBlue}
                             value={fieldValue.userName}
+                            selectionColor={colors.darkBlue}
 
                         />
                         <TextInput
@@ -51,6 +52,7 @@ export const RegistrationScreen = () => {
                             placeholder="Enter your email"
                             placeholderTextColor={colors.darkBlue}
                             value={fieldValue.email}
+                            selectionColor={colors.darkBlue}
 
                         />
                         <TextInput
@@ -60,6 +62,7 @@ export const RegistrationScreen = () => {
                             placeholder="Enter password"
                             placeholderTextColor={colors.darkBlue}
                             value={fieldValue.password}
+                            selectionColor={colors.darkBlue}
 
                         />
                         {error ? <Text styles={styles.errorText}>{error}</Text> : null}
@@ -75,7 +78,7 @@ export const RegistrationScreen = () => {
                                 Sign In
                             </Text>
                         </TouchableOpacity>
-                    </>
+                    </React.Fragment>
                 }
             </View>
         </AuthContainer>

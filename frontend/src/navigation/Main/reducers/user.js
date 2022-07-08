@@ -9,11 +9,11 @@ const userReducer = handleActions(
     {
         [actions.setUser]: (state, {payload}) => ({
             ...state,
-            userData: payload,
+            user: payload,
         }),
         [actions.deleteUser]: (state) => ({
             ...state,
-            userData: null,
+            user: null,
         }),
     },
     defaultState

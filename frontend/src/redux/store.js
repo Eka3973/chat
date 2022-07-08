@@ -10,7 +10,7 @@ import rootReducer from '../redux/reducers';
 const persistConfig = {
     key: 'root',
     storage: AsyncStorage,
-    blacklist: ['auth'],
+    blacklist: ['auth', 'users', 'messages'],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

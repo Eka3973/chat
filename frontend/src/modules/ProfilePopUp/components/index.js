@@ -1,4 +1,5 @@
-import {Modal, Text, TouchableOpacity, View} from 'react-native'
+import {Modal, TouchableOpacity, View} from 'react-native'
+import Text from '../../../common/CustomText'
 import {MoreVertical} from 'react-native-feather'
 import React, {useCallback, useState} from 'react'
 import styles from './styles'
