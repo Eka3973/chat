@@ -1,4 +1,5 @@
 # Chat (React Native)
+:white_check_mark: The project is still in development
 
 
 ## Installation
